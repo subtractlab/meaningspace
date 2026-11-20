@@ -9,6 +9,7 @@ The full conversation log is never summarized away. A meaning layer with **line-
 ![runs](https://img.shields.io/badge/runs-local%20%2B%20MCP-blue)
 ![status](https://img.shields.io/badge/status-in%20daily%20use-brightgreen)
 ![first anchor](https://img.shields.io/badge/first%20public%20anchor-2026--06--06-lightgrey)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24388284.svg)](https://doi.org/10.5281/zenodo.24388284)
 
 ---
 
