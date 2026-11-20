@@ -1,0 +1,21 @@
+{
+  "title": "MeaningSpace: a dated design record",
+  "upload_type": "publication",
+  "publication_type": "technicalnote",
+  "description": "<p>Keep every word. Load only the meaning.</p><p>A local memory layer for people who work with an AI all day, every day.\nThe full conversation log is never summarized away. A meaning layer with **line-level addresses** sits on top of it, so a new session pulls in only the few sections it needs — and can still walk back to the exact lines they came from.</p><p>A dated public record of the design. The implementation is not published. More: https://subtractlab.com</p>",
+  "creators": [
+    {
+      "name": "Okuda, Koji",
+      "affiliation": "SubtractLab",
+      "orcid": "0009-0003-9251-8455"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "keywords": [
+    "AI memory",
+    "conversational memory",
+    "LLM agents",
+    "SubtractLab"
+  ]
+}
