@@ -5,7 +5,7 @@
 A local memory layer for people who work with an AI all day, every day.
 The full conversation log is never summarized away. A meaning layer with **line-level addresses** sits on top of it, so a new session pulls in only the few sections it needs — and can still walk back to the exact lines they came from.
 
-![storage](https://img.shields.io/badge/storage-DuckDB%20(single%20file)-yellow)
+![storage](https://img.shields.io/badge/storage-DuckDB%20%2B%20Parquet-yellow)
 ![runs](https://img.shields.io/badge/runs-local%20%2B%20MCP-blue)
 ![status](https://img.shields.io/badge/status-in%20daily%20use-brightgreen)
 ![first anchor](https://img.shields.io/badge/first%20public%20anchor-2026--06--06-lightgrey)
@@ -66,6 +66,21 @@ Auto memory is good at what it noticed at the time. MeaningSpace is built for wh
 - **74** active skills
 - Used every day on a Claude Max 5x plan
 - Search is lexical (BM25) + vector, fused by rank; an optional GPU reranker sorts the final candidates
+
+## Update 2026-11: a Parquet read layer
+
+Search no longer reads the DuckDB file directly. The meaning layer is exported to a folder of Parquet files every night, and each crystallization adds a small delta file. DuckDB is still the only writer; everyone else reads the Parquet copy.
+
+Measured on the author's PC, November 2026:
+
+| | Before: DuckDB file only | After: Parquet read layer |
+|---|---|---|
+| One search, 2 threads (median) | 1,551 ms | 457 ms — same top 5 in 30 of 30 queries |
+| Data needed to search | 2.3 GB (the whole database) | 157 MB |
+| Time to rebuild the read layer | — | 3.6 s |
+| 5 readers at once while a writer holds the database for 40 s | 0 of 50 reads succeeded (file locked) | 50 of 50 reads succeeded |
+
+**Multi-user: tested with agents, not yet with people.** We treat each AI agent as one user. A second agent ran on the same host alongside the main one, reading memory and editing code, and passed the same steps three times in a row. The 5-reader test above ran the read path as five separate processes, not five full agents. Writes are serialized by one host, so we expect several human users to work the same way, but that has not been tested yet: who may read what, and what happens when edits collide, are still open.
 
 ## What is (and isn't) here
 
