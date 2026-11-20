@@ -13,6 +13,8 @@ The full conversation log is never summarized away. A meaning layer with **line-
 
 ---
 
+**Paper (preprint, v0.2):** Okuda, K. (2026). *MeaningSpace: Keep Every Word, Load Only the Meaning.* Zenodo. https://doi.org/10.5281/zenodo.24388335
+
 ## The problem
 
 Every new AI session starts from zero. You explain the architecture again. The agent retries the fix that already failed last week. Rebuilding context burns your usage limit before any real work starts.
